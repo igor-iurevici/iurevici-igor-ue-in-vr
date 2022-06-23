@@ -1,0 +1,30 @@
+• TO SHOW:
+1) Water spill
+3) Backpack collection
+4) Sounds
+	- AI
+	- Effects (collect)
+
+
+
+• TO SOLVE:
+1) Backpack spring joint (too bouncy)
+2) Physics too junkie (more kinematics?)
+3) Cutting mesh improvement (more precise)
+
+
+
+• TO ADD:
+1) Fire on oven (ready to use asset)
+
+
+**********************************************
+**********************************************
+
+• TODO:
+
+1) Collection fix (!)
+2) Backpack better spring (!)
+3) Character controller fix
+4) Water containers adjustments
+5) 

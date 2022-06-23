@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - frame
+  - key
+  - checkL
+  - hand
+  - collectable
+  - backpack
+  - bread
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Grab
+  - Ground
+  - Body
+  - Grab Ignore Ray
+  - Home
+  - ' Left Hand Physics'
+  - Right Hand Physics
+  - Backpack
+  - Collectable
+  - Mask
+  - SeeThrough
+  - Lever
+  - Sliceable
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
