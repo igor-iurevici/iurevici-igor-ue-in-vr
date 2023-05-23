@@ -9,8 +9,6 @@
 
 • TO SOLVE:
 1) Backpack spring joint (too bouncy)
-2) Physics too junkie (more kinematics?)
-3) Cutting mesh improvement (more precise)
 
 
 

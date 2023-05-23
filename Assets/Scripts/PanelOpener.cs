@@ -7,15 +7,7 @@ public class PanelOpener : MonoBehaviour
     public List<GameObject> panelsToClose = new List<GameObject>();
     public List<GameObject> panelsToOpen = new List<GameObject>();
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "hand")
-        {
-            Invoke("OpenPanel", 0.2f);
-        }
-    }
-
-    void OpenPanel()
+    public void OpenPanel()
     {
         if (panelsToClose != null)
         {
