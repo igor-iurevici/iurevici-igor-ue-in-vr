@@ -16,7 +16,12 @@ public class Collect : MonoBehaviour
     public void CollectObj()
     {
         audioSource[Random.Range(0, audioSource.Length)].Play();
-        IXRSelectInteractable objName = socket.GetOldestInteractableSelected();
-        Destroy(objName.transform);
+        //IXRSelectInteractable objName = socket.GetOldestInteractableSelected();
+        XRGrabInteractable grabInteractable = socket.GetOldestInteractableSelected() as XRGrabInteractable;
+        if (grabInteractable != null)
+        {
+            GameObject objectToDestroy = grabInteractable.gameObject;
+            Destroy(objectToDestroy);
+        }
     }
 }
