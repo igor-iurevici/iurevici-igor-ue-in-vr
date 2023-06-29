@@ -8,52 +8,65 @@ public class HandController : MonoBehaviour
     public InputDeviceCharacteristics controllerCharacteristics;
     public GameObject handModel;
     public GameObject pointer;
-    private InputDevice targetDevice;
+    public InputDevice targetDevice;
     private Animator handAnimator; 
 
     void Start()
     {
+        TryInitialize();
+    }
+
+    void TryInitialize()
+    {
         List<InputDevice> devices = new List<InputDevice>();
+        InputDevices.GetDevices(devices);
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, devices);
 
-        if(devices.Count > 0)
+        if (devices.Count > 0)
         {
             targetDevice = devices[0];
         }
 
         handAnimator = this.GetComponent<Animator>();
+
     }
 
     void Update()
     {
-        // Trigger button
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+        if (!targetDevice.isValid)
         {
-            handAnimator.SetFloat("Trigger", triggerValue);
+            TryInitialize();
         }
         else
         {
-            handAnimator.SetFloat("Trigger", 0);
-        }
-
-        // Grip button
-        if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
-        {
-            handAnimator.SetFloat("Grip", gripValue);
-
-            if (gripValue > 0.25 && pointer.active == false) 
+            // Trigger button
+            if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
             {
-                pointer.SetActive(true);
+                handAnimator.SetFloat("Trigger", triggerValue);
             }
-            if (gripValue <= 0.25 && pointer.active == true)
+            else
             {
-                pointer.SetActive(false);
+                handAnimator.SetFloat("Trigger", 0);
+            }
+
+            // Grip button
+            if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
+            {
+                handAnimator.SetFloat("Grip", gripValue);
+
+                if (gripValue > 0.25 && pointer.active == false)
+                {
+                    pointer.SetActive(true);
+                }
+                if (gripValue <= 0.25 && pointer.active == true)
+                {
+                    pointer.SetActive(false);
+                }
+            }
+            else
+            {
+                handAnimator.SetFloat("Grip", 0);
             }
         }
-        else
-        {
-            handAnimator.SetFloat("Grip", 0);
-        }
-        
     }
 }
