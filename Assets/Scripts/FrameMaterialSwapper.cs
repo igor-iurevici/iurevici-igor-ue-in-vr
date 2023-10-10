@@ -33,6 +33,7 @@ public class FrameMaterialSwapper : MonoBehaviour
                     }
                     obj.GetComponent<MeshRenderer>().material = screenMats[rnd];
                     prevRnd = rnd;
+                    timer = timeToSwap;
                 }
                 else
                 {
@@ -42,10 +43,9 @@ public class FrameMaterialSwapper : MonoBehaviour
                     }
                     obj.GetComponent<MeshRenderer>().material = frameMats[rnd];
                     prevRnd = rnd;
+                    timer = timeToSwap;
                 }
             }
-
-            timer = timeToSwap;
         }
     }
 }

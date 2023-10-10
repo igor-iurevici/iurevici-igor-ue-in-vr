@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Exploration.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Smart Kitchen.unity
+    guid: a05adaae08d174f178f3877f7b9a5926
+  - enabled: 0
+    path: Assets/Scenes/Smart Frames.unity
+    guid: d6f77c932c7a646f2a3dc859fac4c546
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 7dfe6e5cbcdf6431499f5f070dcd1c47, type: 2}
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: b168b08716495104d8d1c8e37ab98b9d, type: 2}

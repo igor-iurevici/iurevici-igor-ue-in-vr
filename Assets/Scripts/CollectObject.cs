@@ -4,8 +4,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class CollectObject : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable;
-
+    private bool isColliding = false;
     private bool wasHeld = false;
+    public AudioSource[] audioSource;
 
     private void Start()
     {
@@ -24,8 +25,9 @@ public class CollectObject : MonoBehaviour
         if (wasHeld)
         {
             // Object was previously held and is now released
-            if (IsColliding())
+            if (isColliding)
             {
+			    audioSource[Random.Range(0, audioSource.Length)].Play();
                 // Object is colliding with the backpack
                 Destroy(gameObject);
             }
@@ -33,18 +35,13 @@ public class CollectObject : MonoBehaviour
         wasHeld = false;
     }
 
-    private bool IsColliding()
+    private void OnTriggerEnter(Collider collider)
     {
-        Collider[] colliders = GetComponentsInChildren<Collider>();
+        if (collider.gameObject.CompareTag("backpack")) isColliding = true;
+    }
 
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.CompareTag("backpack"))
-            {
-                return true;
-            }
-        }
-
-        return false;
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("backpack")) isColliding = false;
     }
 }
