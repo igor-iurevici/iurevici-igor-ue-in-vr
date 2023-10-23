@@ -1,51 +1,38 @@
-using System.Collections; 
- using System.Collections.Generic; 
- using UnityEngine;
- 
- public class KeypressSoundTrigger : MonoBehaviour {
- 
-  public AudioSource suggestRecipes1;
-  public AudioSource selectionRecipe2;
-  public AudioSource confirmationRecipe3;
-  public AudioSource groceryOrdering4;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-  // Update is called once per frame
-  void Update () {
-         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-             if(!suggestRecipes1.isPlaying &&
-                     !selectionRecipe2.isPlaying &&
-                     !confirmationRecipe3.isPlaying &&
-                     !groceryOrdering4.isPlaying) {
-                 suggestRecipes1.Play();
-             }
-         }
-      
-         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-             if(!suggestRecipes1.isPlaying &&
-                     !selectionRecipe2.isPlaying &&
-                     !confirmationRecipe3.isPlaying &&
-                     !groceryOrdering4.isPlaying) {
-                 selectionRecipe2.Play();
-             }
-         }
+public class KeypressSoundTrigger : MonoBehaviour
+{
+    public List<AudioSource> audioSources;
+    private int currentlyPlayingIndex = -1;
 
+    // Update is called once per frame
+    void Update()
+    {
+        for (int i = 0; i < audioSources.Count; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                if (i < audioSources.Count && audioSources[i] != null)
+                {
+                    if (currentlyPlayingIndex != i)
+                    {
+                        // Stop the currently playing audio source, if any
+                        if (currentlyPlayingIndex != -1)
+                        {
+                            audioSources[currentlyPlayingIndex].Stop();
+                        }
 
-         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-             if(!suggestRecipes1.isPlaying &&
-                     !selectionRecipe2.isPlaying &&
-                     !confirmationRecipe3.isPlaying &&
-                     !groceryOrdering4.isPlaying) {
-                 confirmationRecipe3.Play();
-             }
-         }
-
-         if (Input.GetKeyDown(KeyCode.Alpha4)) {
-             if(!suggestRecipes1.isPlaying &&
-                     !selectionRecipe2.isPlaying &&
-                     !confirmationRecipe3.isPlaying &&
-                     !groceryOrdering4.isPlaying) {
-                 groceryOrdering4.Play();
-             }
-         }
-     }
- }
+                        audioSources[i].Play();
+                        currentlyPlayingIndex = i;
+                    }
+                }
+                else
+                {
+                    audioSources[currentlyPlayingIndex].Stop(); 
+		        }
+            }
+        }
+    }
+}

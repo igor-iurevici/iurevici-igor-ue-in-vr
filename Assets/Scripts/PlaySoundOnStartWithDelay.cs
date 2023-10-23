@@ -6,8 +6,10 @@ public class PlaySoundOnStartWithDelay : MonoBehaviour
     private AudioSource audioSource;
 
     // Delay before playing the audio clip (in seconds)
-    public float delay = 5f;
-    private bool hasPlayed = false;
+    public float delayStart = 5f;
+    public float delayFinal = 300f;
+    private bool hasPlayedStart = false;
+    private bool hasPlayedFinal = false;
 
     private void Start()
     {
@@ -24,14 +26,29 @@ public class PlaySoundOnStartWithDelay : MonoBehaviour
     private void Update()
     {
         // Check if the audio has not been played and the delay time has passed
-        if (!hasPlayed && Time.time >= delay)
+        if (!hasPlayedStart && Time.time >= delayStart)
         {
             // Check if an audio clip is assigned and an AudioSource is present
             if (soundToPlay != null && audioSource != null)
             {
                 // Play the assigned audio clip
                 audioSource.PlayOneShot(soundToPlay);
-                hasPlayed = true; // Mark that the audio has been played
+                hasPlayedStart = true; // Mark that the audio has been played
+            }
+            else
+            {
+                Debug.LogError("No audio clip assigned or AudioSource missing.");
+            }
+        }
+        // Check if the audio has not been played and the delay time has passed
+        if (!hasPlayedFinal && Time.time >= delayFinal)
+        {
+            // Check if an audio clip is assigned and an AudioSource is present
+            if (soundToPlay != null && audioSource != null)
+            {
+                // Play the assigned audio clip
+                audioSource.PlayOneShot(soundToPlay);
+                hasPlayedFinal = true; // Mark that the audio has been played
             }
             else
             {
