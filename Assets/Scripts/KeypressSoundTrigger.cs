@@ -16,22 +16,19 @@ public class KeypressSoundTrigger : MonoBehaviour
             {
                 if (i < audioSources.Count && audioSources[i] != null)
                 {
-                    if (currentlyPlayingIndex != i)
-                    {
-                        // Stop the currently playing audio source, if any
-                        if (currentlyPlayingIndex != -1)
-                        {
-                            audioSources[currentlyPlayingIndex].Stop();
-                        }
+					// Stop the currently playing audio source, if any
+					if (currentlyPlayingIndex != -1)
+					{
+					    audioSources[currentlyPlayingIndex].Stop();
+					}
 
-                        audioSources[i].Play();
-                        currentlyPlayingIndex = i;
-                    }
+					audioSources[i].Play();
+					currentlyPlayingIndex = i;
                 }
                 else
                 {
                     audioSources[currentlyPlayingIndex].Stop(); 
-		        }
+        	    }
             }
         }
     }
